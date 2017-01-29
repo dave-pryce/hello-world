@@ -1,0 +1,20 @@
+[{
+  "id": 1,
+  "name": "Lean UX",
+  "description": "Agile with a Brain"
+},
+{
+  "id": 2,
+  "name": "Design Sprint",
+  "description": "Google Stuff"
+},
+{
+  "id": 3,
+  "name": "Second Gen Lean Prod Dev",
+  "description": "Economics"
+},
+{
+  "id": 4,
+  "name": "Management 3.0",
+  "description": "Cool stuff from Jurgen Apello"
+}]

@@ -1,21 +1,40 @@
 import React, { Component } from 'react';
 import './App.css';
+import $ from 'jquery';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+  super();
   // Initial state to hide skills
     this.state = {
       showSkills: false,
       skills: [
-        {id: 1, name: 'Lean UX', description: 'Agile with a Brain'},
-        {id: 2, name: 'Design Sprint', description: 'Google Stuff'},
-        {id: 3, name: 'Second Gen Lean Prod Dev', description: 'Economics'},
-        {id: 4, name: 'Management 3.0', description: 'Cool stuff from Jurgen Apello'}
-      ]
+    //  { "id": 1,  "name": "Lean UX",  "description": "Agile with a Brain"},
+    //  {"id": 2, "name": "Design Sprint","description": "Google Stuff"},
+    //  {"id": 3, "name": "Second Gen Lean Prod Dev","description": "Economics"},
+    //  {"id": 4, "name": "Management 3.0","description": "Cool stuff from Jurgen Apello"}
+    ]
     };
   }
 
+     componentWillMount() {
+       this._fetchSkills();
+     }
+
+
+    _fetchSkills(){
+      $.ajax({
+        method: 'GET',
+        url: 'skills.json',
+        success: (skills => {
+          //console.log(skills);
+          this.setState({ skills });
+        }),
+        error: (skills => {
+          console.log('error');
+        })
+      })
+    }
 
     render() {
       const skills = this._getSkills();
@@ -45,20 +64,20 @@ class App extends Component {
      }
 
 
-   _addSkill(name, description) {
-     const skill = {
-       id: this.state.skills.length + 1,
-       name,
-       description
-     };
-     this.setState({ skills: this.state.skills.concat([skill]) });
-   }
-
-   _handleClick() {
-     this.setState({
-       showSkills: !this.state.showSkills
-     });
-   }
+  //  _addSkill(name, description) {
+  //    const skill = {
+  //      id: this.state.skills.length + 1,
+  //      name,
+  //      description
+  //    };
+  //    this.setState({ skills: this.state.skills.concat([skill]) });
+  //  }
+   //
+    _handleClick() {
+      this.setState({
+        showSkills: !this.state.showSkills
+      });
+    }
 
   // App end
   }
@@ -71,6 +90,15 @@ class App extends Component {
       );
     }
   }
+
+
+//  class Label extends React.component {
+//    render () {
+//      return (
+//        <div>test</div>
+//      );
+//  }
+//}
 
 
   // class SkillForm extends React.component {
