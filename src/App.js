@@ -46,6 +46,7 @@ class App extends Component {
       <div>
       <h3>Hello World</h3>
       <h4>Skills List</h4>
+      <SkillForm/>
       <button onClick={this._handleClick.bind(this)}>Toggle Skills</button>
       {skillNodes}
       </div>
@@ -64,15 +65,15 @@ class App extends Component {
      }
 
 
-  //  _addSkill(name, description) {
-  //    const skill = {
-  //      id: this.state.skills.length + 1,
-  //      name,
-  //      description
-  //    };
-  //    this.setState({ skills: this.state.skills.concat([skill]) });
-  //  }
-   //
+   _addSkill(name, description) {
+     const skill = {
+       id: this.state.skills.length + 1,
+       name,
+       description
+     };
+     this.setState({ skills: this.state.skills.concat([skill]) });
+   }
+
     _handleClick() {
       this.setState({
         showSkills: !this.state.showSkills
@@ -91,37 +92,30 @@ class App extends Component {
     }
   }
 
+  class SkillForm extends React.component {
+  constructor() {
+  super();
+  render () {
+    return (
+    <form onSubmit={this._handleSubmit.bind(this)}>
+      <label>New Skill</label>
+      <div>
+       <input placerholder="Name:" ref={(input) => this._name = input}/>
+       <textarea placeholder="Description:" ref={(textarea) => this._description = textarea}></textarea>
+       <button>Add New Skill</button>
+     </div>
+     </form>
+    );
+  }
 
-//  class Label extends React.component {
-//    render () {
-//      return (
-//        <div>test</div>
-//      );
-//  }
-//}
+  _handleSubmit(event) {
+    event.preventDefault();
+    let name = this._name;
+    let description = this._description
 
-
-  // class SkillForm extends React.component {
-  // render () {
-  //   return (
-  //   <form onSubmit={this._handleSubmit.bind(this)}>
-  //     <label>New Skill</label>
-  //     <div>
-  //      <input placerholder="Name:" ref={(input) => this._name = input}/>
-  //      <textarea placeholder="Description:" ref={(textarea) => this._description = textarea}></textarea>
-  //      <button>Add New Skill</button>
-  //    </div>
-  //    </form>
-  //   );
-  // }
-  //
-  // _handleSubmit(event) {
-  //   event.preventDefault();
-  //   let name = this._name;
-  //   let description = this._description
-  //
-  //   this.props.addSkill(name.value, description.value);
-  // }
-  // }
+    this.props.addSkill(name.value, description.value);
+  }
+  }
+};
 
 export default App;
