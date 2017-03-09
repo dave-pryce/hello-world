@@ -40,6 +40,7 @@ class App extends Component {
       return (
       <div>
       <h3>Hello World</h3>
+      <SkillForm/>
       <h4>Skills List</h4>
       <button onClick={this._handleClick.bind(this)}>Toggle Skills</button>
       {skillNodes}
@@ -86,7 +87,19 @@ class App extends Component {
     }
   }
 
-
+  class SkillForm extends React.Component {
+    render () {
+      return (
+        <div>
+        <p>Add a new skill</p>
+        <form>
+        <input type='text'/>
+        </form>
+        <button>Add</button>
+        </div>
+      )
+    }
+  }
 
 
 export default App;
